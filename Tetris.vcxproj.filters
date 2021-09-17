@@ -49,7 +49,16 @@
     <ClCompile Include="mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="o.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="shapeconfiguration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="t.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,14 +72,22 @@
     <QtMoc Include="mainwindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="o.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <ClInclude Include="shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shapeconfiguration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="t.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    
+    
     
     
     
@@ -81,6 +98,8 @@
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
+    
     
   </ItemGroup>
   <ItemGroup>

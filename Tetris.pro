@@ -20,14 +20,19 @@ SOURCES += \
     j.cpp \
     main.cpp \
     mainwindow.cpp \
-    shapeconfiguration.cpp
+    o.cpp \
+    shape.cpp \
+    shapeconfiguration.cpp \
+    t.cpp
 
 HEADERS += \
     fieldofrectangles.h \
     j.h \
     mainwindow.h \
+    o.h \
     shape.h \
-    shapeconfiguration.h
+    shapeconfiguration.h \
+    t.h
 
 FORMS += \
     mainwindow.ui

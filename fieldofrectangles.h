@@ -14,6 +14,8 @@ public:
     QVector<QVector<bool>>&getField(){ return field;};
     void createField(QWidget*);
     void setTruthFlags(const QList<QRect>&);
+    void clearField(QWidget*);
+    void makeRowFalse(int);
     bool bottomCollision(const QList<QRect>&);
     bool rightCollision(const QList<QRect>&);
     bool leftCollision(const QList<QRect>&);

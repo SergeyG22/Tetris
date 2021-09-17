@@ -5,25 +5,28 @@
 #include <QObject>
 #include <QTimer>
 #include "fieldofrectangles.h"
+#include <shapeconfiguration.h>
 
 class Shape{
+protected:
+    ShapeConfiguration shape_configuration;
+    QWidget *window;
+    QList<QRect>figure;
 public:
-    virtual void setActivity(bool) = 0;
-    virtual bool getActivity()const = 0;
-    virtual bool moveShape() = 0;
-    virtual void moveToRight() = 0;
-    virtual void moveToLeft() = 0;
-//  virtual bool moveToBottom() = 0;
+    inline virtual bool getActivity()const        { return shape_configuration.activity;}
+    inline virtual void setActivity(bool activity){ shape_configuration.activity = activity;};
+    inline void destroyShape() { figure.clear(); };
+    inline void repaintShape() { window->repaint();};
+    virtual bool checkArgumentsShape(int,int,QSize);
+    virtual bool moveShape();
+    virtual void moveToRight();
+    virtual void moveToLeft();
+    virtual bool moveToDown(FieldOfRectangles&);
     virtual void rotateShape(){ };
-    virtual void destroyShape() = 0;
-    virtual void repaintShape() = 0;
-    virtual QList<QRect>& getShape() = 0;
+    virtual QList<QRect>& getShape(){ return figure; };
     virtual void setParametersShape(int,int,QSize) = 0;
-  //virtual QVector2D getCoordinateElementOfShape(int)const = 0;
-    virtual bool intersection(FieldOfRectangles&) = 0;
-  //virtual bool checkFieldValues(int,int,FieldOfRectangles&) = 0;
-    virtual ~Shape() {
-    } ;
+    virtual bool intersection(FieldOfRectangles&){  return true; };
+    virtual ~Shape();
 };
 
 

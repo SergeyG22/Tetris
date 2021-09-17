@@ -5,10 +5,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     ui->setupUi(this);
     field.createField(this);
     timer = new QTimer;
-    timer->start(500);
+//    timer->start(500);
     buildShape();
     this->setFixedSize(QSize(200,400));
-    connect(timer, &QTimer::timeout, this, &MainWindow::moveShapeByTimer);
+    connect(timer, &QTimer::timeout, this, &MainWindow::moveToDown);
 }
 
 MainWindow::~MainWindow() {
@@ -37,14 +37,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
             break;
          }
     case Qt::Key::Key_A:{
-        qDebug()<<"acac";
         for(auto it = shapes.begin(); it!=shapes.end();++it){
           if(it.i->t()->getActivity() && !field.leftCollision(it.i->t()->getShape())){
             it.i->t()->moveToLeft();
             }
         }
         break;
-
     }
     case Qt::Key::Key_D:{
         for(auto it = shapes.begin(); it!=shapes.end();++it){
@@ -54,39 +52,100 @@ void MainWindow::keyPressEvent(QKeyEvent *event){
         }
         break;
     }
+    case Qt::Key::Key_S: {
+        moveToDown();
+    }
 
 
 }
 }
 
-void MainWindow::keyReleaseEvent(QKeyEvent *event){
-
-}
-
-void MainWindow::moveShapeByTimer(){
-    for(auto it = shapes.begin(); it!=shapes.end(); it++){
-            if((it.i->t()->moveShape() && it.i->t()->getActivity()) ||
-                    //если обьект обнаружил препятствие снизу  и этот обьект активный
-                    (field.bottomCollision(it.i->t()->getShape()) && it.i->t()->getActivity())) {
-                field.setTruthFlags(it.i->t()->getShape());  // установить флаги этого обьекта
-                it.i->t()->setActivity(false);               // сделать обьект не активным
-                buildShape();                                // собрать новый обьект
-                break;
-            }
+void MainWindow::moveToDown(){
+    for(auto it = shapes.begin(); it!=shapes.end();++it){
+      if(it.i->t()->getActivity()){
+         if(it.i->t()->moveToDown(field)){      // вернет истину когда внизу препятствие
+             field.setTruthFlags(it.i->t()->getShape());
+             it.i->t()->setActivity(false);
+             findAndDestroyRow();
+             buildShape();
+             break;
+         }
         }
+    }
 }
+
+short MainWindow::random(int first,int second){
+        std::mt19937 rng(rd());
+        std::uniform_int_distribution<quint32> uni(first,second);
+        random_integer = uni(rng);
+        return random_integer;
+}
+
 
 void MainWindow::buildShape(){
-    Shape* shape = new J(this);
+    Shape* shape = nullptr;
+    shape = new T(this);
+//  switch (random(0,1)) {
+//    case 0:{
+//        shape = new O(this);
+//        break;
+//        }
+//    case 1:{
+//        shape = new J(this);
+//        break;
+//        }
+//    }
+
     shape->setActivity(true);
-    shape->setParametersShape(0,0, QSize(20,20));
+    size_shape.setWidth(20);
+    size_shape.setHeight(20);
+    shape->setParametersShape(0,0, size_shape);
     shapes.push_back(shape);
 }
 
+void MainWindow::destroyRow(int row){
+    int pos_y = row * size_shape.width();
+    for(auto it = shapes.begin(); it!=shapes.end();++it){
+        for(auto iter = it.i->t()->getShape().begin(); iter!=it.i->t()->getShape().end(); ){
+             if(iter.i->t().y() == pos_y){
+                     iter = it.i->t()->getShape().erase(iter);
+             }else{
+                 ++iter;
+             }
+        }
+    }
+}
 
+void MainWindow::findAndDestroyRow(){
+    int pos_x = (this->width() / size_shape.width())-1;
+    int pos_y = (this->height() / size_shape.width())-1;
+    for(int row = 0; row <= pos_y; ++row){
+       for(int column = 0; column <= pos_x; ++column){
+           if(!field.getField()[row][column]){
+               break;
+           }
+           if(column==pos_x){
+              destroyRow(row);
+              field.clearField(this);
+              moveRows(row);
+           }
+       }
+    }
+}
 
+void MainWindow::moveRows(int row){
+    for(auto it = shapes.begin(); it!=shapes.end();++it){
+        for(auto iter = it.i->t()->getShape().begin(); iter!=it.i->t()->getShape().end(); ++iter){
+            if((row * size_shape.width())  > iter.i->t().y()){
+             iter.i->t().moveTo(iter.i->t().x(), iter.i->t().y() + size_shape.width());
+            }
+        }
+    }
+    for(auto it = shapes.begin(); it!=shapes.end();++it){
+        field.setTruthFlags(it.i->t()->getShape());
+    }
 
-
+}
 
 
 
