@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QDebug>
 #include <iostream>
-//
 
 class FieldOfRectangles{
     QVector<QVector<bool>>field;

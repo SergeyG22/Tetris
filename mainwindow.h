@@ -7,6 +7,7 @@
 #include <j.h>
 #include <o.h>
 #include <t.h>
+#include <i.h>
 #include <shape.h>
 #include <fieldofrectangles.h>
 #include <random>

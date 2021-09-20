@@ -9,7 +9,6 @@ public:
     T(QObject *parent);
     void rotateShape() override;
     void setParametersShape(int,int,QSize) override;
- // bool intersection(FieldOfRectangles&)override;
 };
 
 #endif // T_H

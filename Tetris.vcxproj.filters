@@ -40,6 +40,9 @@
     <ClCompile Include="fieldofrectangles.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="i.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="j.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +69,9 @@
     <ClInclude Include="fieldofrectangles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <QtMoc Include="i.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="j.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -86,6 +92,8 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    
+    
     
     
     

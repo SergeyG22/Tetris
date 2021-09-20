@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent),ui(new Ui::MainWind
     ui->setupUi(this);
     field.createField(this);
     timer = new QTimer;
-//    timer->start(500);
+    timer->start(500);
     buildShape();
     this->setFixedSize(QSize(200,400));
     connect(timer, &QTimer::timeout, this, &MainWindow::moveToDown);
@@ -84,22 +84,29 @@ short MainWindow::random(int first,int second){
 
 void MainWindow::buildShape(){
     Shape* shape = nullptr;
-    shape = new T(this);
-//  switch (random(0,1)) {
-//    case 0:{
-//        shape = new O(this);
-//        break;
-//        }
-//    case 1:{
-//        shape = new J(this);
-//        break;
-//        }
-//    }
+  switch (random(0,3)) {
+    case 0:{
+        shape = new O(this);
+        break;
+        }
+    case 1:{
+        shape = new J(this);
+        break;
+        }
+    case 2:{
+        shape = new T(this);
+        break;
+        }
+    case 3:{
+        shape = new I(this);
+        break;
+        }
+    }
 
     shape->setActivity(true);
     size_shape.setWidth(20);
     size_shape.setHeight(20);
-    shape->setParametersShape(0,0, size_shape);
+    shape->setParametersShape(60,20, size_shape);
     shapes.push_back(shape);
 }
 

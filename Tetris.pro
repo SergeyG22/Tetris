@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     fieldofrectangles.cpp \
+    i.cpp \
     j.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 
 HEADERS += \
     fieldofrectangles.h \
+    i.h \
     j.h \
     mainwindow.h \
     o.h \
