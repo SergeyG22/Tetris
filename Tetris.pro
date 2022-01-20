@@ -15,31 +15,33 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += \
-    fieldofrectangles.cpp \
-    i.cpp \
-    j.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    o.cpp \
-    shape.cpp \
-    shapeconfiguration.cpp \
-    t.cpp
+INCLUDEPATH += $$PWD/include
 
-HEADERS += \
-    fieldofrectangles.h \
-    i.h \
-    j.h \
-    mainwindow.h \
-    o.h \
-    shape.h \
-    shapeconfiguration.h \
-    t.h
 
-FORMS += \
-    mainwindow.ui
+SOURCES += src/mainwindow.cpp \
+           src/main.cpp \
+           src/fieldofrectangles.cpp \
+           src/i.cpp \
+           src/j.cpp \
+           src/o.cpp \
+           src/t.cpp \
+           src/shape.cpp \
+           src/shapeconfiguration.cpp \
 
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+
+HEADERS += include/mainwindow.h \
+           include/ui_mainwindow.h \
+           include/fieldofrectangles.h \
+           include/i.h \
+           include/j.h \
+           include/o.h \
+           include/t.h \
+           include/shape.h \
+           include/shapeconfiguration.h \
+
+FORMS += ui/mainwindow.ui \
+
+ #Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+ else: unix:!android: target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
