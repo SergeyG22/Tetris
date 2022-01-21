@@ -65,5 +65,6 @@ nmake Release
  SPACE - rotate figure
 ```
 
-
+### Preview
+![hippo](https://github.com/SergeyG22/WorldOfTanks/blob/master/docs/images/animation.gif)
 
