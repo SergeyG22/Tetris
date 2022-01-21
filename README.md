@@ -1,3 +1,8 @@
+### Tetris
+
+Classic Tetris - a computer game invented in the USSR.
+Drop shapes and fill in as many horizontal lines as possible.
+
 
 ### Build from source
 **MinGW compiler debug version:**
@@ -50,5 +55,15 @@ cd build
 qmake -makefile ..
 nmake Release
 ```
+### Keyboard control
+
+```
+ W - move up
+ S - move down
+ A - move left
+ D - move right
+ SPACE - rotate figure
+```
+
 
 
